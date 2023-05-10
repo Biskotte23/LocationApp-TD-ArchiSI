@@ -28,12 +28,24 @@ public class LocationDaoImpl implements LocationDao {
 	@Override
 	public List<LocationBean> getLocations() {
 		Query request = em.createQuery("select l from LocationBean l");
-		return request.getResultList();
+		List<LocationBean> locations = request.getResultList();
+		
+		for (LocationBean location : locations) {
+			// TODO: Get la température.
+			// location.setTemperature(0);
+		}
+		
+		return locations;
 	}
 
 	@Override
 	public LocationBean getLocation(Integer id) {
-		return em.find(LocationBean.class, id);
+		LocationBean location = em.find(LocationBean.class, id);
+		
+		// TODO: Get la température.
+		// location.setTemperature(0);
+		
+		return location;
 	}
 
 	@Override

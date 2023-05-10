@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -27,6 +28,9 @@ public class LocationBean implements Serializable {
 	private String zipCode;
 	@Lob
 	private byte[] picture;
+	@Transient
+	private double temperature;
+
 	private static final long serialVersionUID = 1L;
 
 	public LocationBean() {
@@ -79,6 +83,14 @@ public class LocationBean implements Serializable {
 
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+	
+	public double getTemperature() {
+		return temperature;
+	}
+
+	public void setTemperature(double temperature) {
+		this.temperature = temperature;
 	}
 
 	/**
