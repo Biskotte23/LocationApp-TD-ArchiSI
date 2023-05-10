@@ -62,15 +62,11 @@ public class LocationBusinessImpl implements LocationBusinessLocal, LocationBusi
 	public Double getLocationTemperature(LocationBean location) {
 		List<Feature> features = addressDao.getAddresses(location.getAddress() + ", " + location.getZipCode());
 		Double temperature = null;
-		
-		System.out.println("Adresse: " + location.getAddress() + ", " + location.getZipCode() + " / " + features.get(0).toString());
-		
+
 		if (features.size() > 0) {
 			List<Double> coordinates = features.get(0).getGeometry().getCoordinates();
-			System.out.println("Cooronnées: " + coordinates.get(0) + " / " + coordinates.get(1));
 			WsWeatherResult weatherResult = locationDao.getWeather(coordinates.get(1), coordinates.get(0));
 			temperature = weatherResult.getMain().getTemp() - 273.15;
-			System.out.println("Temp Kelvin: " + weatherResult.getMain().getTemp());
 		} 
 		
 		return temperature;

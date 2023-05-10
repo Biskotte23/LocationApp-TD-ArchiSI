@@ -29,7 +29,7 @@ public class LocationBean implements Serializable {
 	@Lob
 	private byte[] picture;
 	@Transient
-	private double temperature;
+	private int temperature;
 
 	private static final long serialVersionUID = 1L;
 
@@ -85,12 +85,12 @@ public class LocationBean implements Serializable {
 		this.picture = picture;
 	}
 	
-	public double getTemperature() {
+	public int getTemperature() {
 		return temperature;
 	}
 
 	public void setTemperature(double temperature) {
-		this.temperature = temperature;
+		this.temperature = (int) Math.round(temperature);
 	}
 
 	/**

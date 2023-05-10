@@ -1,6 +1,8 @@
 package fr.univtours.polytech.locationapp.dao;
 
+import java.io.FileInputStream;
 import java.util.List;
+import java.util.Properties;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -12,7 +14,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import fr.univtours.polytech.locationapp.model.LocationBean;
-import fr.univtours.polytech.locationapp.ws.WsAddressResult;
 import fr.univtours.polytech.locationapp.ws.WsWeatherResult;
 
 @Stateless
@@ -51,9 +52,10 @@ public class LocationDaoImpl implements LocationDao {
 
 	@Override
 	public WsWeatherResult getWeather(double lat, double lon) {
+		Properties props = new Properties();
 		Client client = ClientBuilder.newClient();
 
-		// On indique l'URL du Web Service.
+        // On indique l'URL du Web Service.
 		WebTarget target = client.target(URL);
 
 		// On indique le "end point" (on aurait aussi pu directement le mettre dans
@@ -70,6 +72,8 @@ public class LocationDaoImpl implements LocationDao {
 		// On appelle le WS en précisant le type de l'objet renvoyé, ici un
 		// WsAdressResult.
 		WsWeatherResult wsResult = target.request(MediaType.APPLICATION_JSON).get(WsWeatherResult.class);
+
+		
 		return wsResult;
 	}
 
