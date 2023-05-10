@@ -8,6 +8,7 @@ import fr.univtours.polytech.locationapp.model.LocationBean;
 
 @Local
 public interface LocationBusinessLocal {
+	public Double getLocationTemperature(LocationBean location);
 
 	public void addLocation(LocationBean locationBean);
 

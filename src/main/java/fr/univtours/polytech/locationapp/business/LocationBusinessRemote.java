@@ -8,6 +8,7 @@ import fr.univtours.polytech.locationapp.model.LocationBean;
 
 @Remote
 public interface LocationBusinessRemote {
+	public Double getLocationTemperature(LocationBean location);
 
 	public void addLocation(LocationBean bean);
 

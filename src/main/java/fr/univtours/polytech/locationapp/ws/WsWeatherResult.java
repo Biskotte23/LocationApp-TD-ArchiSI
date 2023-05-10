@@ -1,5 +1,5 @@
 
-package fr.univtours.polytech.locationapp.model.weather;
+package fr.univtours.polytech.locationapp.ws;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -11,6 +11,13 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import fr.univtours.polytech.locationapp.model.weather.Clouds;
+import fr.univtours.polytech.locationapp.model.weather.Coord;
+import fr.univtours.polytech.locationapp.model.weather.Main;
+import fr.univtours.polytech.locationapp.model.weather.Sys;
+import fr.univtours.polytech.locationapp.model.weather.Weather;
+import fr.univtours.polytech.locationapp.model.weather.Wind;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({

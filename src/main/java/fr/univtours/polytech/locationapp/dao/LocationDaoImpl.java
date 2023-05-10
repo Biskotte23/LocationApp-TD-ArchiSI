@@ -12,7 +12,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import fr.univtours.polytech.locationapp.model.LocationBean;
-import fr.univtours.polytech.locationapp.model.weather.WsWeatherResult;
+import fr.univtours.polytech.locationapp.ws.WsAddressResult;
+import fr.univtours.polytech.locationapp.ws.WsWeatherResult;
 
 @Stateless
 public class LocationDaoImpl implements LocationDao {
@@ -27,25 +28,13 @@ public class LocationDaoImpl implements LocationDao {
 
 	@Override
 	public List<LocationBean> getLocations() {
-		Query request = em.createQuery("select l from LocationBean l");
-		List<LocationBean> locations = request.getResultList();
-		
-		for (LocationBean location : locations) {
-			// TODO: Get la température.
-			// location.setTemperature(0);
-		}
-		
-		return locations;
+		Query request = em.createQuery("select l from LocationBean l");		
+		return request.getResultList();
 	}
 
 	@Override
 	public LocationBean getLocation(Integer id) {
-		LocationBean location = em.find(LocationBean.class, id);
-		
-		// TODO: Get la température.
-		// location.setTemperature(0);
-		
-		return location;
+		return em.find(LocationBean.class, id);
 	}
 
 	@Override
@@ -61,7 +50,7 @@ public class LocationDaoImpl implements LocationDao {
 	private static String URL = "https://api.openweathermap.org/data/2.5";
 
 	@Override
-	public WsWeatherResult getWeather(double lat, double lon, String key) {
+	public WsWeatherResult getWeather(double lat, double lon) {
 		Client client = ClientBuilder.newClient();
 
 		// On indique l'URL du Web Service.
@@ -76,7 +65,7 @@ public class LocationDaoImpl implements LocationDao {
 		// On précise (lorsqu'il y en a) les "query parameters".
 		target = target.queryParam("lat", lat);
 		target = target.queryParam("lon", lon);
-		target = target.queryParam("appid", key);
+		target = target.queryParam("appid", "e7a49f92ce1fb4d64a55ed54ed360c3a");
 
 		// On appelle le WS en précisant le type de l'objet renvoyé, ici un
 		// WsAdressResult.
